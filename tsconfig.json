@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitHelpers": false,
+    "sourceMap": false,
+    "outDir": "js"
+  },
+  "filesGlob": [
+    "./**/*.ts",
+    "./test/**/*.ts",
+    "!./jspm_packages/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "!./typings/**/*.ts",
+    "./typings/tsd.d.ts"
+  ],
+  "compileOnSave": true,
+  "buildOnSave": true,
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "./src/lib/core.ts",
+    "./src/lib/core/gameobject.ts",
+    "./src/lib/core/renderer.ts",
+    "./src/lib/core/scene.ts",
+    "./src/lib/core/scenemanager.ts",
+    "./src/lib/engine.ts",
+    "./src/lib/input.ts",
+    "./src/lib/input/keyboard.ts",
+    "./src/lib/input/mouse.ts",
+    "./src/lib/input/touch.ts",
+    "./src/lib/math.ts",
+    "./src/lib/math/easing.ts",
+    "./src/lib/math/mathex.ts",
+    "./src/lib/time.ts",
+    "./src/lib/time/clock.ts",
+    "./src/lib/time/timer.ts",
+    "./src/main.ts",
+    "./src/menu/background.ts",
+    "./src/menu/gui.ts",
+    "./src/menu/menu.ts",
+    "./src/misc/healthpack.ts",
+    "./src/misc/portal.ts",
+    "./src/ships/boss.ts",
+    "./src/ships/bullet.ts",
+    "./src/ships/enemy.ts",
+    "./src/ships/player.ts",
+    "./src/ships/ship.ts"
+  ]
+}

@@ -1,0 +1,48 @@
+System.register(['./enemy'], function(exports_1) {
+    "use strict";
+    var __extends = (this && this.__extends) || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+    var enemy_1;
+    var Boss;
+    return {
+        setters:[
+            function (enemy_1_1) {
+                enemy_1 = enemy_1_1;
+            }],
+        execute: function() {
+            Boss = (function (_super) {
+                __extends(Boss, _super);
+                function Boss(position) {
+                    _super.call(this, 1, position);
+                    this.position = position;
+                    this.sprite = new Image();
+                    // Edit Stats
+                    this.spdMax = this.spdMax * 0.5; //He moves at half the spd as other ships.
+                    this.hpMax = this.hp = 1000;
+                    // Adjust hitbox
+                    this.hitbox.width = 128;
+                    this.hitbox.height = 128;
+                    this.hitbox.x = -64;
+                    this.hitbox.y = -64;
+                    // Sprite
+                    this.sprite.src = 'sprites/boss.png';
+                }
+                Boss.prototype.update = function (scene, i, deltaTime) {
+                    _super.prototype.update.call(this, scene, i, deltaTime);
+                };
+                Boss.prototype.render = function (context) {
+                    context.save();
+                    context.translate(this.position.x, this.position.y);
+                    context.rotate(-this.rotation * (Math.PI / 180));
+                    context.drawImage(this.sprite, 0, 0, this.hitbox.width, this.hitbox.height, this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
+                    context.restore();
+                };
+                return Boss;
+            }(enemy_1.Enemy));
+            exports_1("Boss", Boss);
+        }
+    }
+});
