@@ -38,7 +38,11 @@ System.register(['../lib/engine', './ship'], function(exports_1) {
                     var player = scene.findObjectOfType('Player')[0];
                     if (player && this.timer.done('react')) {
                         this.timer.set('react', Math.random());
-                        this.nextRotation = (Math.random() > 0.01) ? this.nextRotation : engine_1.MathEx.getAngleTwoPoints(this.position.x, this.position.y, player.position.x, player.position.y);
+                        //ww 0.1 is the reaction time of the enemy
+                        this.nextRotation = (Math.random() > 0.1) ? this.nextRotation : engine_1.MathEx.getAngleTwoPoints(this.position.x, this.position.y, player.position.x, player.position.y);
+                    }
+                    if (this.isDestoryed == true) {
+                        player.killCount++;
                     }
                 };
                 return Enemy;

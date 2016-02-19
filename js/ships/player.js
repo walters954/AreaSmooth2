@@ -27,6 +27,8 @@ System.register(['../lib/engine', './ship'], function(exports_1) {
                     this.shootSound = new Audio();
                     this.shootSound.src = 'sounds/laser.wav';
                     this.gunDamage = 10;
+                    this.lives = 3;
+                    this.gunReloadTime = 1;
                 }
                 Player.prototype.update = function (scene, input, deltaTime) {
                     var _this = this;

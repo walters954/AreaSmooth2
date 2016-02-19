@@ -5,10 +5,13 @@ import {Enemy} from './enemy';
 export class Player extends Ship {
   public type = 'Player';
   public shootSound = new Audio();
+
   constructor(public team = 0, public position: { x: number, y: number }) {
     super(team, position);
     this.shootSound.src = 'sounds/laser.wav';
     this.gunDamage = 10;
+    this.lives = 3
+    this.gunReloadTime = 1;
   }
   update(scene: Scene, input: Input, deltaTime:number) {
     super.update(scene, input, deltaTime);

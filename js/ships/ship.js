@@ -42,8 +42,13 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                     this.prevDir = 1;
                     //Ship Guns
                     this.timer = new timer_1.Timer();
-                    this.gunReloadTime = .1;
+                    //ww
+                    this.gunReloadTime = .3;
                     this.gunDamage = 1;
+                    //WW
+                    this.lives = 1;
+                    this.isDestoryed = false;
+                    this.killCount = 0;
                     this.team = team;
                     //Transform
                     this.position = position;
@@ -81,8 +86,18 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                     this.position.y = engine_1.MathEx.clamp(this.position.y, 0, scene.height);
                     // Apply Death
                     this.hp = engine_1.MathEx.clamp(this.hp, 0, this.hpMax);
+                    //ww
                     if (this.hp <= 0) {
-                        scene.destroy(this);
+                        this.lives -= 1;
+                        if (this.lives <= 0) {
+                            scene.destroy(this);
+                            this.isDestoryed = true;
+                        }
+                        else {
+                            this.position.x = Math.floor(Math.random() * scene.width);
+                            this.position.y = Math.floor(Math.random() * scene.height);
+                            this.hp = 100;
+                        }
                     }
                 };
                 Ship.prototype.render = function (context) {

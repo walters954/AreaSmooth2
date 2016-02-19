@@ -1,12 +1,13 @@
-DONE A) You die when you hit 0%.
 
-DONE B) Your ship will have 3 lives.
+DONE A) Your ship will have 3 lives.
 
-DONE C) The health of your ship starts at a 100%. For each bullet, you loose 1% and for collision with enemies 10%
+Paul B) The health of your ship starts at a 100%. For each bullet, you loose 1% and for collision with enemies 10%
+
+DONE C) You die when you hit 0%.
 
 D) You get 10 points for each bullet that hits one of your enemy.
 
-E) Enemy ships die once they have been hit with a bullet 10 times. A direct collision with your ship counts as 5 bullets but it also affects your ship.
+Paul E) Enemy ships die once they have been hit with a bullet 10 times. A direct collision with your ship counts as 5 bullets but it also affects your ship.
 
 DONE F) You will start the game with a random number of enemy ships between 3 to 7.
 

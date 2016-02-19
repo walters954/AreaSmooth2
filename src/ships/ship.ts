@@ -23,8 +23,16 @@ export class Ship extends GameObject {
 
   //Ship Guns
   public timer = new Timer();
-  public gunReloadTime: number = .1;
+  //ww
+  public gunReloadTime: number = .3;
   public gunDamage = 1;
+
+
+  //WW
+  public lives = 1;
+  public isDestoryed = false;
+  public killCount = 0;
+
   constructor(public team = 0, position: { x: number, y: number }) {
     super();
     this.team = team;
@@ -72,8 +80,20 @@ export class Ship extends GameObject {
     // Apply Death
     this.hp = MathEx.clamp(this.hp, 0, this.hpMax);
 
+    //ww
     if (this.hp <= 0) {
-      scene.destroy(this);
+      this.lives -= 1;
+
+      if (this.lives <= 0)
+      {
+        scene.destroy(this);
+        this.isDestoryed = true;
+      }
+      else{
+        this.position.x = Math.floor(Math.random() * scene.width);
+        this.position.y = Math.floor(Math.random() * scene.height);
+        this.hp = 100
+      }
     }
   }
 

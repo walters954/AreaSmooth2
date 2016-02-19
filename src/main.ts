@@ -67,8 +67,9 @@ function createScene(level: number): Scene {
   }));
 
   // Even levels are enemies, odd levels are bosses.
+  //WW
   if (level % 2 == 0) {
-    for (var i = 0; i < 5; i++)
+    for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
       scene.add(new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)

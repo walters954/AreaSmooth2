@@ -17,7 +17,7 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
     }
     // Edit this function to check which level you're in and make the game harder with it.
     function createScene(level) {
-        var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 800, height: 800 }, 800, 800);
+        var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
         scene.add(new background_1.Background());
         // You may want to DRY out this code.
         var player = new player_1.Player(0, {
@@ -42,8 +42,9 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
             y: Math.floor(Math.random() * scene.height)
         }));
         // Even levels are enemies, odd levels are bosses.
+        //WW
         if (level % 2 == 0) {
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
                 scene.add(new enemy_1.Enemy(1, {
                     x: Math.floor(Math.random() * scene.width),
                     y: Math.floor(Math.random() * scene.height)
@@ -58,7 +59,7 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         return scene;
     }
     function createMainMenu() {
-        var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 800, height: 800 }, 800, 800);
+        var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
         scene.add(new background_1.Background());
         scene.add(new menu_1.Menu());
         return scene;
