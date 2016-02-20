@@ -5,7 +5,7 @@ Paul B) The health of your ship starts at a 100%. For each bullet, you loose 1% 
 
 DONE C) You die when you hit 0%.
 
-D) You get 10 points for each bullet that hits one of your enemy.
+DONE D) You get 10 points for each bullet that hits one of your enemy.
 
 Paul E) Enemy ships die once they have been hit with a bullet 10 times. A direct collision with your ship counts as 5 bullets but it also affects your ship.
 

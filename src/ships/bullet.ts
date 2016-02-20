@@ -41,12 +41,21 @@ export class Bullet extends GameObject {
     // if it has a team,
     // if that team isn't the same as this bullet,
     // destroy this bullet.
+    //ww
     scene.array.map((o) => {
       if (this.isColliding(o)) {
         if ("team" in o)
           if (o.team !== this.team) {
             scene.destroy(this);
             o.hp -= this.damage;
+            scene.findObjectOfType('Player').map(
+              (player: Player) => {
+                if (o.team == 1)
+                {
+                  player.killScore +=10;
+                }
+              }
+            );
           }
       }
     });

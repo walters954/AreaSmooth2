@@ -33,6 +33,16 @@ function start() {
   // Add your victory level here.
 }
 
+//ww
+function summonEnemy(scene)
+{
+  for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
+    scene.add(new Enemy(1, {
+      x: Math.floor(Math.random() * scene.width),
+      y: Math.floor(Math.random() * scene.height)
+    }));
+}
+
 // Edit this function to check which level you're in and make the game harder with it.
 function createScene(level: number): Scene {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);

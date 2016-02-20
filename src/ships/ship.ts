@@ -23,12 +23,12 @@ export class Ship extends GameObject {
 
   //Ship Guns
   public timer = new Timer();
-  //ww
   public gunReloadTime: number = .3;
   public gunDamage = 1;
 
 
   //WW
+  public killScore = 0;
   public lives = 1;
   public isDestoryed = false;
   public killCount = 0;

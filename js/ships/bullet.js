@@ -55,12 +55,18 @@ System.register(['../lib/engine'], function(exports_1) {
                     // if it has a team,
                     // if that team isn't the same as this bullet,
                     // destroy this bullet.
+                    //ww
                     scene.array.map(function (o) {
                         if (_this.isColliding(o)) {
                             if ("team" in o)
                                 if (o.team !== _this.team) {
                                     scene.destroy(_this);
                                     o.hp -= _this.damage;
+                                    scene.findObjectOfType('Player').map(function (player) {
+                                        if (o.team == 1) {
+                                            player.killScore += 10;
+                                        }
+                                    });
                                 }
                         }
                     });

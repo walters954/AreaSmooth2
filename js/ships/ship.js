@@ -42,10 +42,10 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                     this.prevDir = 1;
                     //Ship Guns
                     this.timer = new timer_1.Timer();
-                    //ww
                     this.gunReloadTime = .3;
                     this.gunDamage = 1;
                     //WW
+                    this.killScore = 0;
                     this.lives = 1;
                     this.isDestoryed = false;
                     this.killCount = 0;
