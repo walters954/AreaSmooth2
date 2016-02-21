@@ -20,7 +20,7 @@ export class Player extends Ship {
     this.gunDamage = 10; //ww default needs to be 1
     this.lives = 3
     this.gunReloadTime = 1;
-    this.killCount = 150; //ww for testing
+    //this.killCount = 150; //ww for testing
     // Starts collision timer at 0 for initial hit once ship is created
     this.collisionTimer.addTimer('collide', this.collisionGracePeriod);
 

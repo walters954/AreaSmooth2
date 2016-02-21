@@ -24,7 +24,7 @@ System.register(['./enemy', '../misc/portal'], function(exports_1) {
                     this.sprite = new Image();
                     // Edit Stats
                     this.spdMax = this.spdMax * 0.5; //He moves at half the spd as other ships.
-                    this.hpMax = this.hp = 1; //ww deafult 1000
+                    this.hpMax = this.hp = 1000; //ww deafult 1000
                     // Adjust hitbox
                     this.hitbox.width = 128;
                     this.hitbox.height = 128;
