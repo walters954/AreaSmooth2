@@ -2,6 +2,7 @@ import {GameObject, Scene, Input, MathEx, KeyCode} from '../lib/engine';
 
 import {Ship} from './ship';
 import {Enemy} from './enemy';
+import {Portal} from '../misc/portal';
 export class Player extends Ship {
   public type = 'Player';
   public shootSound = new Audio();
@@ -12,9 +13,10 @@ export class Player extends Ship {
   constructor(public team = 0, public position: { x: number, y: number }) {
     super(team, position);
     this.shootSound.src = 'sounds/laser.wav';
-    this.gunDamage = 100;
+    this.gunDamage = 10; //ww default needs to be 1
     this.lives = 3
     this.gunReloadTime = 1;
+    this.killCount = 150; //ww for testing
   }
   update(scene: Scene, input: Input, deltaTime:number) {
     super.update(scene, input, deltaTime);
@@ -30,16 +32,28 @@ export class Player extends Ship {
     this.moving = (u || l || d || r);
     this.shooting = input.getKey(KeyCode.Space);
 
-
-    if ( this.killCount % 3 == 0 && this.summonEnemyAtThree && this.killCount != 0)
+//ww so you can summon 3 ships every time you kill 3
+    if ( this.killCount % 3 == 0 && this.summonEnemyAtThree &&
+      this.killCount != 150 && this.killCount != 0 )
     {
-      for (var i = 0; i < 3; i++)
+      for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
         scene.add(new Enemy(1, {
           x: Math.floor(Math.random() * scene.width),
           y: Math.floor(Math.random() * scene.height)
         }));
         this.summonEnemyAtThree = false;
     };
+
+    //ww Add a Portal
+    if (this.killCount == 150 && this.spawnPortal)
+    {
+      scene.add(new Portal({
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      }));
+      this.spawnPortal = false;
+    }
+
 
     // Check collisions with enemies
     scene.findObjectOfType('Enemy').map(

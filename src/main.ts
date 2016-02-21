@@ -71,12 +71,6 @@ function createScene(level: number): Scene {
   }, 5));
 
 
-  // Add a Portal
-  scene.add(new Portal({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }));
-
   // Even levels are enemies, odd levels are bosses.
   //WW
   if (level % 2 == 0) {

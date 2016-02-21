@@ -1,13 +1,13 @@
 
 DONE A) Your ship will have 3 lives.
 
-Paul B) The health of your ship starts at a 100%. For each bullet, you loose 1% and for collision with enemies 10%
+DONE  B) The health of your ship starts at a 100%. For each bullet, you loose 1% and for collision with enemies 10%
 
 DONE C) You die when you hit 0%.
 
 DONE D) You get 10 points for each bullet that hits one of your enemy.
 
-Paul E) Enemy ships die once they have been hit with a bullet 10 times. A direct collision with your ship counts as 5 bullets but it also affects your ship.
+DONE E) Enemy ships die once they have been hit with a bullet 10 times. A direct collision with your ship counts as 5 bullets but it also affects your ship.
 
 DONE F) You will start the game with a random number of enemy ships between 3 to 7.
 
@@ -15,7 +15,7 @@ Done G) After 3 enemies have been killed, you will spawn randomly between 2 to 4
 
 H) Every 5 minutes, you will see a health energy object, which does not move, for your ship to consume and regain 50% of health (max is always 100%). This objects appears randomly in the screen but it does not move. It goes away after 30 seconds.
 
-I) After you have killed 150 ships, you will pass to a new level. Between levels, you have to fight a ship boss. This ship boss, moves slowly and fires multiple bullets. To kill the boss, you must hit it 100 times with your bullets. If you hit it with your ship, this will count as 5 of your bullets, but you will loose 25% of your energy.
+P1 DONE I) After you have killed 150 ships, you will pass to a new level. Between levels, you have to fight a ship boss. This ship boss, moves slowly and fires multiple bullets. To kill the boss, you must hit it 100 times with your bullets. If you hit it with your ship, this will count as 5 of your bullets, but you will loose 25% of your hp.
 
 J) In the new level, you will be required to have a different enemy (different color) and all previous rules are increased by 1 (if is a number).
 
@@ -28,3 +28,6 @@ M) You must have GUI objects displaying score, amount of enemies, level, lives l
 N) You should be able to start the game and pause it if needed.
 
 Extra Credit: You can do something not in this list and may obtain up to 20 extra points.
+
+Player: HP 100 bulletdmg: 1 shipdmg: 5
+Enemy: HP 10 bulletdmg 1 shipdmg: 10
