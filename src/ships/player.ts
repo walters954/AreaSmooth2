@@ -2,19 +2,27 @@ import {GameObject, Scene, Input, MathEx, KeyCode} from '../lib/engine';
 
 import {Ship} from './ship';
 import {Enemy} from './enemy';
+import {Timer} from '../lib/time/timer';
 export class Player extends Ship {
   public type = 'Player';
   public shootSound = new Audio();
-  public collided = 0;
+  // Holds logic for collision timer
+  public collisionGracePeriod = 2;
+  public collisionTimer = new Timer();
+
   constructor(public team = 0, public position: { x: number, y: number }) {
     super(team, position);
     this.shootSound.src = 'sounds/laser.wav';
     this.gunDamage = 10;
     this.lives = 3
     this.gunReloadTime = 1;
+    // Starts collision timer at 0 for initial hit once ship is created
+    this.collisionTimer.addTimer('collide', this.collisionGracePeriod);
   }
+
   update(scene: Scene, input: Input, deltaTime:number) {
     super.update(scene, input, deltaTime);
+    this.collisionTimer.update(deltaTime);
 
     //Keyboard
     var l = input.getKey(KeyCode.ArrowLeft);
@@ -30,15 +38,16 @@ export class Player extends Ship {
     // Check collisions with enemies
     scene.findObjectOfType('Enemy').map(
       (enemy: Enemy) => {
-        if (!this.collided && this.isColliding(enemy)) {
+        if (this.collisionTimer.done('collide') && this.isColliding(enemy)) {
           this.hp -= 10;
           enemy.hp -= 5;
-          this.collided = 150;
+          this.collisionTimer.reset('collide');
+          //this.collided = 150;
         }
-        else if(this.collided)
-        {
-          this.collided--;
-        }
+        //else if(this.collided)
+        //{
+        //  this.collided--;
+        //}
       }
     );
 
