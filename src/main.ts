@@ -34,6 +34,7 @@ function start() {
 }
 
 //ww
+/*
 function summonEnemy(scene)
 {
   for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
@@ -42,7 +43,7 @@ function summonEnemy(scene)
       y: Math.floor(Math.random() * scene.height)
     }));
 }
-
+*/
 // Edit this function to check which level you're in and make the game harder with it.
 function createScene(level: number): Scene {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
@@ -69,12 +70,6 @@ function createScene(level: number): Scene {
     y: Math.floor(Math.random() * scene.height)
   }, 5));
 
-
-  // Add a Portal
-  scene.add(new Portal({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }));
 
   // Even levels are enemies, odd levels are bosses.
   //WW

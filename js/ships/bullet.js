@@ -65,6 +65,9 @@ System.register(['../lib/engine'], function(exports_1) {
                                     scene.findObjectOfType('Player').map(function (player) {
                                         if (o.team == 1) {
                                             player.killScore += 10;
+                                            if (player.killCount % 3 != 0) {
+                                                player.summonEnemyAtThree = true;
+                                            }
                                         }
                                     });
                                 }

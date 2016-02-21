@@ -1,6 +1,6 @@
-System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui', './ships/player', './ships/enemy', './ships/boss', './misc/healthpack', './misc/portal'], function(exports_1) {
+System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui', './ships/player', './ships/enemy', './ships/boss', './misc/healthpack'], function(exports_1) {
     "use strict";
-    var engine_1, background_1, menu_1, gui_1, player_1, enemy_1, boss_1, healthpack_1, portal_1;
+    var engine_1, background_1, menu_1, gui_1, player_1, enemy_1, boss_1, healthpack_1;
     var renderer, sceneManager;
     function start() {
         // Create Renderer
@@ -16,13 +16,16 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         // Add your victory level here.
     }
     //ww
-    function summonEnemy(scene) {
-        for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-            scene.add(new enemy_1.Enemy(1, {
-                x: Math.floor(Math.random() * scene.width),
-                y: Math.floor(Math.random() * scene.height)
-            }));
+    /*
+    function summonEnemy(scene)
+    {
+      for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
+        scene.add(new Enemy(1, {
+          x: Math.floor(Math.random() * scene.width),
+          y: Math.floor(Math.random() * scene.height)
+        }));
     }
+    */
     // Edit this function to check which level you're in and make the game harder with it.
     function createScene(level) {
         var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
@@ -44,11 +47,6 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
             x: Math.floor(Math.random() * scene.width),
             y: Math.floor(Math.random() * scene.height)
         }, 5));
-        // Add a Portal
-        scene.add(new portal_1.Portal({
-            x: Math.floor(Math.random() * scene.width),
-            y: Math.floor(Math.random() * scene.height)
-        }));
         // Even levels are enemies, odd levels are bosses.
         //WW
         if (level % 2 == 0) {
@@ -102,9 +100,6 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
             },
             function (healthpack_1_1) {
                 healthpack_1 = healthpack_1_1;
-            },
-            function (portal_1_1) {
-                portal_1 = portal_1_1;
             }],
         execute: function() {
             start();

@@ -25,8 +25,10 @@ System.register(['../lib/engine', './ship'], function(exports_1) {
                     this.position = position;
                     this.type = 'Enemy';
                     // Adjust Stats
+                    this.hp = 10;
                     this.spdMax = 128;
                     this.gunReloadTime = 0.5;
+                    this.gunDamage = 1;
                     // Add AI Reaction timer
                     this.timer.addTimer('react');
                     // Controls
