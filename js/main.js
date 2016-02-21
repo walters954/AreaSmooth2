@@ -27,10 +27,10 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         scene.add(player);
         scene.add(new gui_1.GUI());
         // Add a Healthpack
-        scene.add(new healthpack_1.Healthpack({
-            x: Math.floor(Math.random() * scene.width),
-            y: Math.floor(Math.random() * scene.height)
-        }));
+        //scene.add(new Healthpack({
+        //  x: Math.floor(Math.random() * scene.width),
+        //  y: Math.floor(Math.random() * scene.height)
+        //}));
         // Past level 5 you need to spawn mini healthpacks
         scene.add(new healthpack_1.Healthpack({
             x: Math.floor(Math.random() * scene.width),
