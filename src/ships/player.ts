@@ -5,7 +5,7 @@ import {Enemy} from './enemy';
 export class Player extends Ship {
   public type = 'Player';
   public shootSound = new Audio();
-
+  public collided = 0;
   constructor(public team = 0, public position: { x: number, y: number }) {
     super(team, position);
     this.shootSound.src = 'sounds/laser.wav';
@@ -30,9 +30,14 @@ export class Player extends Ship {
     // Check collisions with enemies
     scene.findObjectOfType('Enemy').map(
       (enemy: Enemy) => {
-        if (this.isColliding(enemy)) {
-          this.hp--;
-          enemy.hp--;
+        if (!this.collided && this.isColliding(enemy)) {
+          this.hp -= 10;
+          enemy.hp -= 5;
+          this.collided = 150;
+        }
+        else if(this.collided)
+        {
+          this.collided--;
         }
       }
     );
