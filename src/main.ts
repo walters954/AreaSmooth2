@@ -59,10 +59,10 @@ function createScene(level: number): Scene {
   scene.add(new GUI());
 
   // Add a Healthpack
-  scene.add(new Healthpack({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }));
+  //scene.add(new Healthpack({
+  //  x: Math.floor(Math.random() * scene.width),
+  //  y: Math.floor(Math.random() * scene.height)
+  //}));
 
   // Past level 5 you need to spawn mini healthpacks
   scene.add(new Healthpack({
