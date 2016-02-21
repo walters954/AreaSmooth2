@@ -11,7 +11,7 @@ Paul E) Enemy ships die once they have been hit with a bullet 10 times. A direct
 
 DONE F) You will start the game with a random number of enemy ships between 3 to 7.
 
-G) After 3 enemies have been killed, you will spawn randomly between 2 to 4 ships.
+Done G) After 3 enemies have been killed, you will spawn randomly between 2 to 4 ships.
 
 H) Every 5 minutes, you will see a health energy object, which does not move, for your ship to consume and regain 50% of health (max is always 100%). This objects appears randomly in the screen but it does not move. It goes away after 30 seconds.
 

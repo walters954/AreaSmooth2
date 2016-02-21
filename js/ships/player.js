@@ -29,6 +29,7 @@ System.register(['../lib/engine', './ship', './enemy'], function(exports_1) {
                     this.type = 'Player';
                     this.shootSound = new Audio();
                     this.summonEnemyAtThree = true;
+                    this.collided = 0;
                     this.shootSound.src = 'sounds/laser.wav';
                     this.gunDamage = 100;
                     this.lives = 3;
@@ -56,9 +57,13 @@ System.register(['../lib/engine', './ship', './enemy'], function(exports_1) {
                     ;
                     // Check collisions with enemies
                     scene.findObjectOfType('Enemy').map(function (enemy) {
-                        if (_this.isColliding(enemy)) {
-                            _this.hp--;
-                            enemy.hp--;
+                        if (!_this.collided && _this.isColliding(enemy)) {
+                            _this.hp -= 10;
+                            enemy.hp -= 5;
+                            _this.collided = 150;
+                        }
+                        else if (_this.collided) {
+                            _this.collided--;
                         }
                     });
                     //Sync Viewport with Screen
