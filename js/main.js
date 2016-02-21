@@ -1,6 +1,6 @@
-System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui', './ships/player', './ships/enemy', './ships/boss', './misc/healthpack'], function(exports_1) {
+System.register(['./lib/engine', './menu/background', './menu/menu', './menu/victory', './menu/gui', './ships/player', './ships/enemy', './ships/boss', './misc/healthpack'], function(exports_1) {
     "use strict";
-    var engine_1, background_1, menu_1, gui_1, player_1, enemy_1, boss_1, healthpack_1;
+    var engine_1, background_1, menu_1, victory_1, gui_1, player_1, enemy_1, boss_1, healthpack_1;
     var renderer, sceneManager;
     function start() {
         // Create Renderer
@@ -11,9 +11,14 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         // Create SceneManager and Levels
         sceneManager = new engine_1.SceneManager();
         sceneManager.add(createMainMenu());
-        for (var i = 0; i < 10; i++)
-            sceneManager.add(createScene(i));
-        // Add your victory level here.
+        for (var i = 0; i < 11; i++) {
+            if (i == 10) {
+                sceneManager.add(createVictory());
+            }
+            else {
+                sceneManager.add(createScene(i));
+            }
+        }
     }
     // Edit this function to check which level you're in and make the game harder with it.
     function createScene(level) {
@@ -59,6 +64,12 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         scene.add(new menu_1.Menu());
         return scene;
     }
+    function createVictory() {
+        var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
+        scene.add(new background_1.Background());
+        scene.add(new victory_1.Victory());
+        return scene;
+    }
     function animate() {
         renderer.update(sceneManager.current());
         renderer.render(sceneManager.current());
@@ -74,6 +85,9 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
             },
             function (menu_1_1) {
                 menu_1 = menu_1_1;
+            },
+            function (victory_1_1) {
+                victory_1 = victory_1_1;
             },
             function (gui_1_1) {
                 gui_1 = gui_1_1;

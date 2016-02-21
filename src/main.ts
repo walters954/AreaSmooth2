@@ -4,6 +4,7 @@ import {Renderer, SceneManager, Scene} from './lib/engine';
 // Game Specific Stuff
 import {Background} from './menu/background';
 import {Menu} from './menu/menu';
+import {Victory} from './menu/victory';
 import {GUI} from './menu/gui';
 
 
@@ -27,10 +28,16 @@ function start() {
 
   sceneManager.add(createMainMenu());
 
-  for (var i = 0; i < 10; i++)
-    sceneManager.add(createScene(i));
-
-  // Add your victory level here.
+  for (var i = 0; i < 11; i++){
+    if (i == 10)
+    {
+      sceneManager.add(createVictory())
+    }
+    else
+    {
+      sceneManager.add(createScene(i));
+    }
+  }
 }
 
 // Edit this function to check which level you're in and make the game harder with it.
@@ -82,6 +89,14 @@ function createMainMenu() {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
     scene.add(new Background());
     scene.add(new Menu());
+  return scene;
+}
+
+function createVictory()
+{
+  var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
+    scene.add(new Background());
+    scene.add(new Victory());
   return scene;
 }
 

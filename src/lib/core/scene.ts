@@ -42,7 +42,7 @@ export class Scene {
   }
   current()
   {
-    this.scenemanager.current;
+    return this.scenemanager.currentIndex();
   }
 
 }

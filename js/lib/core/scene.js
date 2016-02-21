@@ -34,7 +34,7 @@ System.register([], function(exports_1) {
                     this.scenemanager.goto(level);
                 };
                 Scene.prototype.current = function () {
-                    this.scenemanager.current;
+                    return this.scenemanager.currentIndex();
                 };
                 return Scene;
             }());

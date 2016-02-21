@@ -13,8 +13,11 @@ export class GUI extends GameObject {
     this.viewport = scene.viewport;
     this.player = scene.findObjectOfType('Player')[0];
     if (this.player)
-      this.myString = "HP: " + this.player.hp + " Kill Count: "
-      + this.player.killCount + " Score: " + this.player.killScore +" Level: " +scene.current()
+      this.myString = "HP: " + this.player.hp +
+      " Kill Count: " + this.player.killCount +
+       " Score: " + this.player.killScore +
+        " Lives: " + this.player.lives +
+        " Level: " + scene.current()
       ;
 
 
