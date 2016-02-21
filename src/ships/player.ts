@@ -5,11 +5,12 @@ import {Enemy} from './enemy';
 export class Player extends Ship {
   public type = 'Player';
   public shootSound = new Audio();
+  public summonEnemyAtThree = true;
 
   constructor(public team = 0, public position: { x: number, y: number }) {
     super(team, position);
     this.shootSound.src = 'sounds/laser.wav';
-    this.gunDamage = 10;
+    this.gunDamage = 100;
     this.lives = 3
     this.gunReloadTime = 1;
   }
@@ -26,6 +27,17 @@ export class Player extends Ship {
 
     this.moving = (u || l || d || r);
     this.shooting = input.getKey(KeyCode.Space);
+
+
+    if ( this.killCount % 3 == 0 && this.summonEnemyAtThree && this.killCount != 0)
+    {
+      for (var i = 0; i < 3; i++)
+        scene.add(new Enemy(1, {
+          x: Math.floor(Math.random() * scene.width),
+          y: Math.floor(Math.random() * scene.height)
+        }));
+        this.summonEnemyAtThree = false;
+    };
 
     // Check collisions with enemies
     scene.findObjectOfType('Enemy').map(
