@@ -12,7 +12,7 @@ export class Enemy extends Ship {
     this.hp = 10;
     this.spdMax = 128;
     this.gunReloadTime = 0.5;
-    this.gunDamage = 0;
+    this.gunDamage = 1;
 
     // Add AI Reaction timer
     this.timer.addTimer('react');

@@ -61,10 +61,10 @@ export class Ship extends GameObject {
         scene.add(bullet);
         if (this.isBoss)
         {
-          bullet = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10 * (Math.PI / 180)), this.gunDamage);
-          scene.add(bullet);
-          bullet = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
-          scene.add(bullet);
+          var bullet1 = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10  * (Math.PI / 180)) , this.gunDamage);
+          scene.add(bullet1);
+          var bullet2 = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
+          scene.add(bullet2);
         }
       }
     }

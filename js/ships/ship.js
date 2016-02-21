@@ -69,10 +69,10 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                             var bullet = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation * (Math.PI / 180)), -Math.sin(this.rotation * (Math.PI / 180)), this.gunDamage);
                             scene.add(bullet);
                             if (this.isBoss) {
-                                bullet = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10 * (Math.PI / 180)), this.gunDamage);
-                                scene.add(bullet);
-                                bullet = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
-                                scene.add(bullet);
+                                var bullet1 = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10 * (Math.PI / 180)), this.gunDamage);
+                                scene.add(bullet1);
+                                var bullet2 = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
+                                scene.add(bullet2);
                             }
                         }
                     }
