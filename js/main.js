@@ -11,21 +11,10 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/gui
         // Create SceneManager and Levels
         sceneManager = new engine_1.SceneManager();
         sceneManager.add(createMainMenu());
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
             sceneManager.add(createScene(i));
         // Add your victory level here.
     }
-    //ww
-    /*
-    function summonEnemy(scene)
-    {
-      for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-        scene.add(new Enemy(1, {
-          x: Math.floor(Math.random() * scene.width),
-          y: Math.floor(Math.random() * scene.height)
-        }));
-    }
-    */
     // Edit this function to check which level you're in and make the game harder with it.
     function createScene(level) {
         var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
