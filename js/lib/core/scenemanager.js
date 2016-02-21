@@ -28,6 +28,9 @@ System.register([], function(exports_1) {
                     this.index = Math.max(0, Math.min(level, this.array.length));
                     ;
                 };
+                SceneManager.prototype.currentIndex = function () {
+                    return this.index;
+                };
                 return SceneManager;
             }());
             exports_1("SceneManager", SceneManager);

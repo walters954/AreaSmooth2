@@ -51,6 +51,7 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                     this.killCount = 0;
                     this.spawnPortal = true;
                     this.isBoss = false;
+                    this.time = 0;
                     this.team = team;
                     //Transform
                     this.position = position;

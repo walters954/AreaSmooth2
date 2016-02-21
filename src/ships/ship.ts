@@ -34,6 +34,7 @@ export class Ship extends GameObject {
   public killCount = 0;
   public spawnPortal = true;
   public isBoss = false;
+  public time = 0;
 
   constructor(public team = 0, position: { x: number, y: number }) {
     super();
@@ -109,9 +110,11 @@ export class Ship extends GameObject {
   }
 
   render(context: CanvasRenderingContext2D) {
+
     context.save();
     context.translate(this.position.x, this.position.y);
     context.rotate(-this.rotation * (Math.PI / 180));
+
     context.drawImage(this.sprite, 64 * this.team, 0, 64, 64, -32, -32, 64, 64);
     context.restore();
   }

@@ -13,13 +13,13 @@ DONE F) You will start the game with a random number of enemy ships between 3 to
 
 Done G) After 3 enemies have been killed, you will spawn randomly between 2 to 4 ships.
 
-H) Every 5 minutes, you will see a health energy object, which does not move, for your ship to consume and regain 50% of health (max is always 100%). This objects appears randomly in the screen but it does not move. It goes away after 30 seconds.
+DONE H) Every 5 minutes, you will see a health energy object, which does not move, for your ship to consume and regain 50% of health (max is always 100%). This objects appears randomly in the screen but it does not move. It goes away after 30 seconds.
 
 DONE I) After you have killed 150 ships, you will pass to a new level. Between levels, you have to fight a ship boss. This ship boss, moves slowly and fires multiple bullets. To kill the boss, you must hit it 100 times with your bullets. If you hit it with your ship, this will count as 5 of your bullets, but you will loose 25% of your hp.
 
 J) In the new level, you will be required to have a different enemy (different color) and all previous rules are increased by 1 (if is a number).
 
-K) Your game will have 10 levels. If you reach all the 10 levels with all the bosses, you will show a victory screen
+DONE K) Your game will have 10 levels. If you reach all the 10 levels with all the bosses, you will show a victory screen
 
 L) Randomly, starting level 5, you will spawn objects that do not move but if collided by your ship, will count as 5% of health. In level 5, you will spawn 5 of these objects, randomly on the screen in random position, for a maximum of 60 seconds. you will not spawn after 30 more seconds have passed. Level 6, it will be 6 objects, and times decreases by 50/20, level 7 will be 7 objects, same time, level 8 and 9 will be 9 objects with time decreasing by 40/10, and level 10, it will be 10 objects, with time 30/10.
 

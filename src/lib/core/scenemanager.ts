@@ -23,5 +23,9 @@ export class SceneManager {
   goto(level: number) {
     this.index = Math.max(0, Math.min(level, this.array.length));;
   }
+  currentIndex()
+  {
+    return this.index;
+  }
 
 }

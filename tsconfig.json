@@ -45,6 +45,7 @@
     "./src/menu/background.ts",
     "./src/menu/gui.ts",
     "./src/menu/menu.ts",
+    "./src/menu/victory.ts",
     "./src/misc/healthpack.ts",
     "./src/misc/portal.ts",
     "./src/ships/boss.ts",
