@@ -33,6 +33,9 @@ System.register([], function(exports_1) {
                 Scene.prototype.goto = function (level) {
                     this.scenemanager.goto(level);
                 };
+                Scene.prototype.current = function () {
+                    this.scenemanager.current;
+                };
                 return Scene;
             }());
             exports_1("Scene", Scene);

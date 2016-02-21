@@ -23,7 +23,7 @@ System.register(['../lib/engine'], function(exports_1) {
                     this.player = scene.findObjectOfType('Player')[0];
                     if (this.player)
                         this.myString = "HP: " + this.player.hp + " Kill Count: "
-                            + this.player.killCount + " Score: " + this.player.killScore;
+                            + this.player.killCount + " Score: " + this.player.killScore + " Level: " + scene.current();
                 };
                 GUI.prototype.render = function (context) {
                     context.fillStyle = "#ffffff";

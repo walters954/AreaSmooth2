@@ -40,5 +40,9 @@ export class Scene {
   goto(level) {
     this.scenemanager.goto(level);
   }
+  current()
+  {
+    this.scenemanager.current;
+  }
 
 }
