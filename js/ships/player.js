@@ -1,11 +1,11 @@
-System.register(['../lib/engine', './ship', './enemy', '../misc/portal'], function(exports_1) {
+System.register(['../lib/engine', './ship', './enemy', '../misc/portal', '../lib/time/timer'], function(exports_1) {
     "use strict";
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
-    var engine_1, ship_1, enemy_1, portal_1;
+    var engine_1, ship_1, enemy_1, portal_1, timer_1;
     var Player;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal'], functi
             },
             function (portal_1_1) {
                 portal_1 = portal_1_1;
+            },
+            function (timer_1_1) {
+                timer_1 = timer_1_1;
             }],
         execute: function() {
             Player = (function (_super) {
@@ -32,16 +35,21 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal'], functi
                     this.type = 'Player';
                     this.shootSound = new Audio();
                     this.summonEnemyAtThree = true;
-                    this.collided = 0;
+                    // Holds logic for collision timer
+                    this.collisionGracePeriod = 2;
+                    this.collisionTimer = new timer_1.Timer();
                     this.shootSound.src = 'sounds/laser.wav';
                     this.gunDamage = 10; //ww default needs to be 1
                     this.lives = 3;
                     this.gunReloadTime = 1;
                     this.killCount = 150; //ww for testing
+                    // Starts collision timer at 0 for initial hit once ship is created
+                    this.collisionTimer.addTimer('collide', this.collisionGracePeriod);
                 }
                 Player.prototype.update = function (scene, input, deltaTime) {
                     var _this = this;
                     _super.prototype.update.call(this, scene, input, deltaTime);
+                    this.collisionTimer.update(deltaTime);
                     //Keyboard
                     var l = input.getKey(engine_1.KeyCode.ArrowLeft);
                     var r = input.getKey(engine_1.KeyCode.ArrowRight);
@@ -71,14 +79,15 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal'], functi
                     }
                     // Check collisions with enemies
                     scene.findObjectOfType('Enemy').map(function (enemy) {
-                        if (!_this.collided && _this.isColliding(enemy)) {
+                        if (_this.collisionTimer.done('collide') && _this.isColliding(enemy)) {
                             _this.hp -= 10;
                             enemy.hp -= 5;
-                            _this.collided = 150;
+                            _this.collisionTimer.reset('collide');
                         }
-                        else if (_this.collided) {
-                            _this.collided--;
-                        }
+                        //else if(this.collided)
+                        //{
+                        //  this.collided--;
+                        //}
                     });
                     //Sync Viewport with Screen
                     scene.viewport.position.x = this.position.x - (scene.viewport.width / 2);
