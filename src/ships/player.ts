@@ -66,7 +66,7 @@ export class Player extends Ship {
         scene.add(new Enemy(1, {
           x: Math.floor(Math.random() * scene.width),
           y: Math.floor(Math.random() * scene.height)
-        }));
+        }, scene.current()));
         this.summonEnemyAtThree = false;
     };
 
