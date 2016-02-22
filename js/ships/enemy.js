@@ -18,17 +18,17 @@ System.register(['../lib/engine', './ship'], function(exports_1) {
         execute: function() {
             Enemy = (function (_super) {
                 __extends(Enemy, _super);
-                function Enemy(team, position) {
+                function Enemy(team, position, adder) {
                     if (team === void 0) { team = 0; }
                     _super.call(this, team, position);
                     this.team = team;
                     this.position = position;
                     this.type = 'Enemy';
                     // Adjust Stats
-                    this.hp = 10;
+                    this.hp = 10 + adder;
                     this.spdMax = 128;
                     this.gunReloadTime = 0.5;
-                    this.gunDamage = 1;
+                    this.gunDamage = 1 + adder;
                     // Add AI Reaction timer
                     this.timer.addTimer('react');
                     // Controls

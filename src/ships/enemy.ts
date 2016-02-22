@@ -6,13 +6,13 @@ import {Player} from './player';
 
 export class Enemy extends Ship {
   public type = 'Enemy';
-  constructor(public team = 0, public position: { x: number, y: number }) {
+  constructor(public team = 0, public position: { x: number, y: number }, adder) {
     super(team, position);
     // Adjust Stats
-    this.hp = 10;
+    this.hp = 10 + adder;
     this.spdMax = 128;
     this.gunReloadTime = 0.5;
-    this.gunDamage = 1;
+    this.gunDamage = 1 + adder;
 
     // Add AI Reaction timer
     this.timer.addTimer('react');

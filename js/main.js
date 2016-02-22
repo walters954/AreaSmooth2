@@ -24,6 +24,7 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/vic
     function createScene(level) {
         var scene = new engine_1.Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
         scene.add(new background_1.Background());
+        var adder = level;
         // You may want to DRY out this code.
         var player = new player_1.Player(0, {
             x: Math.floor(Math.random() * scene.width),
@@ -44,17 +45,19 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/vic
         // Even levels are enemies, odd levels are bosses.
         //WW
         if (level % 2 == 0) {
-            for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-                scene.add(new enemy_1.Enemy(1, {
+            for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++) {
+                var aNewEnemy = new enemy_1.Enemy(1, {
                     x: Math.floor(Math.random() * scene.width),
                     y: Math.floor(Math.random() * scene.height)
-                }));
+                }, adder);
+                scene.add(aNewEnemy);
+            }
         }
         else {
             scene.add(new boss_1.Boss({
                 x: Math.floor(Math.random() * scene.width),
                 y: Math.floor(Math.random() * scene.height)
-            }));
+            }, adder));
         }
         return scene;
     }
