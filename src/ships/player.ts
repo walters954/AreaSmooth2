@@ -88,14 +88,12 @@ export class Player extends Ship {
           this.hp -= 10;
           enemy.hp -= 5;
           this.timer.reset('collide');
-        }/*
+        }
         else if (this.timer.done('collide') && this.isColliding(enemy) ){
           this.hp -= 10;
           enemy.hp -= 5;
           this.timer.reset('collide');
         }
-        */
-
       }
     );
 

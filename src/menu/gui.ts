@@ -12,14 +12,23 @@ export class GUI extends GameObject {
   update(scene: Scene, input, deltaTime) {
     this.viewport = scene.viewport;
     this.player = scene.findObjectOfType('Player')[0];
-    if (this.player)
-      this.myString = "HP: " + this.player.hp +
-      " Kill Count: " + this.player.killCount +
-       " Score: " + this.player.killScore +
-        " Lives: " + this.player.lives +
-        " Level: " + scene.current()
-      ;
+    var enemyCount = 0;
 
+ scene.array.map((o) =>
+ {
+   if(o.type == 'Enemy')
+     enemyCount++;
+ })
+
+ this.viewport = scene.viewport;
+ this.player = scene.findObjectOfType('Player')[0];
+ if (this.player)
+   this.myString = "HP: " + this.player.hp +
+   " Kill Count: " + this.player.killCount +
+    " Score: " + this.player.killScore +
+     " Lives: " + this.player.lives +
+     " Level: " + scene.current() +
+     " Enemies: " + enemyCount;;
 
 
   }
@@ -28,7 +37,6 @@ export class GUI extends GameObject {
     context.font = '16px PixelFont';
     if (this.viewport) {
       context.fillText(this.myString,  16, 16);
-      //context.fillText(..)
     }
   }
 }

@@ -37,11 +37,11 @@ export class Enemy extends Ship {
       //ww 0.1 is the reaction time of the enemy
       this.nextRotation = (Math.random() > 0.1) ? this.nextRotation : MathEx.getAngleTwoPoints(this.position.x, this.position.y, player.position.x, player.position.y);
     }
-
-
-
-
-    if (this.isDestoryed == true)
+    if (this.isDestoryed == true && !this.isFrozen)
+    {
+      player.killCount ++;
+    }
+    else
     {
       player.killCount ++;
     }

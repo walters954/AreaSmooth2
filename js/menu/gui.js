@@ -21,12 +21,21 @@ System.register(['../lib/engine'], function(exports_1) {
                 GUI.prototype.update = function (scene, input, deltaTime) {
                     this.viewport = scene.viewport;
                     this.player = scene.findObjectOfType('Player')[0];
+                    var enemyCount = 0;
+                    scene.array.map(function (o) {
+                        if (o.type == 'Enemy')
+                            enemyCount++;
+                    });
+                    this.viewport = scene.viewport;
+                    this.player = scene.findObjectOfType('Player')[0];
                     if (this.player)
                         this.myString = "HP: " + this.player.hp +
                             " Kill Count: " + this.player.killCount +
                             " Score: " + this.player.killScore +
                             " Lives: " + this.player.lives +
-                            " Level: " + scene.current();
+                            " Level: " + scene.current() +
+                            " Enemies: " + enemyCount;
+                    ;
                 };
                 GUI.prototype.render = function (context) {
                     context.fillStyle = "#ffffff";

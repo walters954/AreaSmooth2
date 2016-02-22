@@ -89,13 +89,12 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                             _this.hp -= 10;
                             enemy.hp -= 5;
                             _this.timer.reset('collide');
-                        } /*
-                        else if (this.timer.done('collide') && this.isColliding(enemy) ){
-                          this.hp -= 10;
-                          enemy.hp -= 5;
-                          this.timer.reset('collide');
                         }
-                        */
+                        else if (_this.timer.done('collide') && _this.isColliding(enemy)) {
+                            _this.hp -= 10;
+                            enemy.hp -= 5;
+                            _this.timer.reset('collide');
+                        }
                     });
                     // Spawns a healthpack every 5 minutes and destroys it
                     // Add a Healthpack
