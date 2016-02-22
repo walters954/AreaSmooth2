@@ -69,10 +69,12 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     if (this.killCount % 3 == 0 && this.summonEnemyAtThree &&
                         this.killCount != 150 && this.killCount != 0 && scene.current() < 5) {
                         for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
-                            scene.add(new enemy_1.Enemy(1, {
+                            var regEnemy = new enemy_1.Enemy(1, {
                                 x: Math.floor(Math.random() * scene.width),
                                 y: Math.floor(Math.random() * scene.height)
-                            }));
+                            }, scene.current());
+                        regEnemy.rndColor = scene.randomColor;
+                        scene.add(regEnemy);
                         this.summonEnemyAtThree = false;
                     }
                     var enemyCount = 0;
@@ -149,10 +151,11 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     var enemyFreeze = new enemy_1.Enemy(1, {
                         x: Math.floor(Math.random() * scene.width),
                         y: Math.floor(Math.random() * scene.height)
-                    });
+                    }, scene.current());
                     enemyFreeze.moving = false;
                     enemyFreeze.shooting = false;
                     enemyFreeze.isFrozen = true;
+                    enemyFreeze.rndColor = scene.randomColor;
                     scene.add(enemyFreeze);
                 };
                 Player.prototype.createPortal = function (scene) {

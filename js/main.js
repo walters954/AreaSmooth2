@@ -39,29 +39,34 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/vic
         // Even levels are enemies, odd levels are bosses.
         //WW
         if (level % 2 == 0 && level < 4) {
-            for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-                scene.add(new enemy_1.Enemy(1, {
+            for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++) {
+                var regEnemy = new enemy_1.Enemy(1, {
                     x: Math.floor(Math.random() * scene.width),
                     y: Math.floor(Math.random() * scene.height)
-                }));
+                }, level);
+                regEnemy.rndColor = scene.randomColor;
+                scene.add(regEnemy);
+            }
         }
         else if (level > 3 && level < 9) {
             for (var i = 0; i < level + 1; i++) {
                 var enemyFreeze = new enemy_1.Enemy(1, {
                     x: Math.floor(Math.random() * scene.width),
                     y: Math.floor(Math.random() * scene.height)
-                });
+                }, level);
                 enemyFreeze.moving = false;
                 enemyFreeze.shooting = false;
                 enemyFreeze.isFrozen = true;
+                enemyFreeze.rndColor = scene.randomColor;
                 scene.add(enemyFreeze);
             }
         }
         else {
-            scene.add(new boss_1.Boss({
+            var boss = new boss_1.Boss({
                 x: Math.floor(Math.random() * scene.width),
                 y: Math.floor(Math.random() * scene.height)
-            }));
+            }, level);
+            scene.add(boss);
         }
         return scene;
     }

@@ -63,12 +63,19 @@ function createScene(level: number): Scene {
 
   // Even levels are enemies, odd levels are bosses.
   //WW
+
   if (level % 2 == 0 && level < 4) {
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-      scene.add(new Enemy(1, {
+    {
+      var regEnemy = new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)
-      }));
+      }, level)
+      regEnemy.rndColor = scene.randomColor
+
+      scene.add(regEnemy);
+    }
+
   }
   else if (level > 3 && level < 9)
   {
@@ -77,18 +84,21 @@ function createScene(level: number): Scene {
       var enemyFreeze = new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)
-      });
+      }, level);
       enemyFreeze.moving = false;
       enemyFreeze.shooting = false;
       enemyFreeze.isFrozen = true;
+      enemyFreeze.rndColor = scene.randomColor;
+
       scene.add(enemyFreeze);
     }
   }
     else {
-    scene.add(new Boss({
-      x: Math.floor(Math.random() * scene.width),
-      y: Math.floor(Math.random() * scene.height)
-    }));
+      var boss = new Boss({
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      }, level)
+    scene.add(boss);
   }
   return scene;
 }

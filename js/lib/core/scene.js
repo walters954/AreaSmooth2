@@ -9,6 +9,7 @@ System.register([], function(exports_1) {
                     this.viewport = viewport;
                     this.width = width;
                     this.height = height;
+                    this.randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
                     this.array = [];
                 }
                 //Destroys a given instance in the scene.

@@ -18,8 +18,8 @@ System.register(['./enemy', '../misc/portal'], function(exports_1) {
         execute: function() {
             Boss = (function (_super) {
                 __extends(Boss, _super);
-                function Boss(position) {
-                    _super.call(this, 1, position);
+                function Boss(position, increaseLevelDmg) {
+                    _super.call(this, 1, position, increaseLevelDmg);
                     this.position = position;
                     this.sprite = new Image();
                     // Edit Stats

@@ -10,6 +10,7 @@ export class Scene {
 
   public array: any[];
   public scenemanager: SceneManager;
+  public randomColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16)
   constructor(public viewport: Viewport, public width: number, public height: number) {
     this.array = [];
   }

@@ -9,13 +9,14 @@ export class Enemy extends Ship {
   public type = 'Enemy';
   public isFrozen = false;
   public tempContext;
-  constructor(public team = 0, public position: { x: number, y: number }) {
+  public rndColor;
+  constructor(public team = 0, public position: { x: number, y: number }, increaseLevelDmg) {
     super(team, position);
     // Adjust Stats
-    this.hp = 10;
+    this.hp = 10 + increaseLevelDmg;
     this.spdMax = 128;
     this.gunReloadTime = 0.5;
-    this.gunDamage = 0; //default 1
+    this.gunDamage = 1 + increaseLevelDmg; //default 1
 
     // Add AI Reaction timer
     this.timer.addTimer('react');
@@ -41,7 +42,6 @@ export class Enemy extends Ship {
     {
       player.killCount ++;
     }
-
   }
 
   render(context: CanvasRenderingContext2D) {
@@ -53,10 +53,11 @@ export class Enemy extends Ship {
     this.tempContext.clearRect(0,0,64,64);
     this.tempContext.drawImage(this.sprite, 64, 0, 64, 64, 0, 0, 64, 64);
     this.tempContext.globalCompositeOperation = 'source-in';
-    this.tempContext.fillStyle = "hsl(" + this.time + ",80%,50%)";
+    this.tempContext.fillStyle = this.rndColor;
     this.tempContext.fillRect(0,0, 64, 64);
     context.drawImage(this.tempContext.canvas, 0,0, 64, 64, -32, -32, 64, 64); //another day figure out why context works at 0 instead of 64
     context.restore();
   }
+
 
 }
