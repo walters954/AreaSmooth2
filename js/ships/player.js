@@ -45,10 +45,10 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     this.goThere = true;
                     this.keepEnemySpawning = true;
                     this.shootSound.src = 'sounds/laser.wav';
-                    this.gunDamage = 10; //ww default needs to be 1
+                    this.gunDamage = 1; //ww default needs to be 1
                     this.lives = 3;
                     this.gunReloadTime = 1;
-                    this.killCount = 150; //ww for testing
+                    //this.killCount = 150; //ww for testing
                     // Starts collision timer at 0 for initial hit once ship is created
                     this.timer.addTimer('collide', this.collisionGracePeriod);
                     // Starts timer for healthpack for 5 minutes
@@ -88,28 +88,28 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     });
                     if (this.keepEnemySpawning && scene.current() > 4) {
                         if (scene.current() == 5) {
-                            this.timer.addTimer('createPortalTimer', 10);
-                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.timer.addTimer('createPortalTimer', 60);
+                            this.timer.addTimer('spawnPortalTimer', 30);
                             this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 6) {
-                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('createPortalTimer', 50);
                             this.timer.addTimer('spawnPortalTimer', 20);
                             this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 7) {
-                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('createPortalTimer', 50);
                             this.timer.addTimer('spawnPortalTimer', 20);
                             this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 8) {
-                            this.timer.addTimer('createPortalTimer', 10);
-                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.timer.addTimer('createPortalTimer', 40);
+                            this.timer.addTimer('spawnPortalTimer', 10);
                             this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 9) {
-                            this.timer.addTimer('createPortalTimer', 10);
-                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.timer.addTimer('createPortalTimer', 40);
+                            this.timer.addTimer('spawnPortalTimer', 10);
                             this.keepEnemySpawning = false;
                         }
                     }

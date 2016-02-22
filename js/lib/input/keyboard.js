@@ -104,13 +104,25 @@ System.register([], function(exports_1) {
                     this.canvas.addEventListener('keyup', function (e) { return _this.keyUpCallback(e); });
                 }
                 Keyboard.prototype.keyDownCallback = function (event) {
-                    this.keys[event.keyCode] = true;
+                    this.keys[event.keyCode] = { down: true, pressed: true, released: false };
                 };
                 Keyboard.prototype.keyUpCallback = function (event) {
-                    this.keys[event.keyCode] = false;
+                    this.keys[event.keyCode] = { down: false, pressed: false, released: true };
                 };
                 Keyboard.prototype.getKey = function (key) {
-                    return (this.keys[key] === undefined || !this.keys[key]) ? false : true;
+                    return (this.keys[key] === undefined) ? false : this.keys[key].down;
+                };
+                Keyboard.prototype.getKeyPressed = function (key) {
+                    return (this.keys[key] === undefined) ? false : this.keys[key].pressed;
+                };
+                Keyboard.prototype.getKeyReleased = function (key) {
+                    return (this.keys[key] === undefined) ? false : this.keys[key].released;
+                };
+                Keyboard.prototype.update = function () {
+                    for (var e in this.keys) {
+                        this.keys[e].pressed = false;
+                        this.keys[e].released = false;
+                    }
                 };
                 return Keyboard;
             }());

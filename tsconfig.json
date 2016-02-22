@@ -32,6 +32,7 @@
     "./src/lib/core/scenemanager.ts",
     "./src/lib/engine.ts",
     "./src/lib/input.ts",
+    "./src/lib/input/imput.ts",
     "./src/lib/input/keyboard.ts",
     "./src/lib/input/mouse.ts",
     "./src/lib/input/touch.ts",
