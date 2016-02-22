@@ -32,4 +32,11 @@ export class Input {
   touches() {
     return this.touch.touches;
   }
+  getKeyPressed(key: KeyCode) {
+ return this.keyboard.getKeyPressed(key);
+}
+
+getKeyReleased(key: KeyCode) {
+ return this.keyboard.getKeyReleased(key);
+}
 }

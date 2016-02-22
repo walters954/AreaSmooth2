@@ -2,6 +2,8 @@ import {GameObject} from './gameobject';
 import {Scene} from './scene';
 import {Input} from '../input';
 import {Clock} from '../time/clock';
+import {KeyCode} from '../input/keyboard';
+import {Keyboard} from '../input/keyboard';
 
 /**
  * Manages rendering objects on canvas.
@@ -12,6 +14,7 @@ export class Renderer {
   public input: Input;
   public scene: Scene;
   public clock: Clock;
+  public paused = false;
 
   // Initzalize Renderer
   constructor() {
@@ -30,11 +33,28 @@ export class Renderer {
   //Updates all the objects in the scene.
   update(scene: Scene) {
     var deltaTime = this.clock.deltaTime();
-    scene.array.map((o) => {
-      if ('update' in o)
-        if (scene)
-          o.update(scene, this.input, deltaTime);
-    });
+
+    if(this.input.getKeyPressed(KeyCode.KeyP))
+    {
+      this.paused = !this.paused;
+    }
+
+
+    //this.input = new Input(this.canvas);
+
+
+    if(!this.paused)
+    {
+      //this.paused = false;
+      scene.array.map((o) => {
+        this.paused = false;
+        if ('update' in o)
+          if (scene)
+            o.update(scene, this.input, deltaTime);
+      });
+    }
+
+
   }
 
   //Refreshes the screen with everything in the scene.

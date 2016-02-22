@@ -6,6 +6,7 @@ import {Background} from './menu/background';
 import {Menu} from './menu/menu';
 import {Victory} from './menu/victory';
 import {GUI} from './menu/gui';
+import {Keyboard, KeyCode} from './lib/input/keyboard';
 
 
 import {Player} from './ships/player';
@@ -14,8 +15,11 @@ import {Boss} from './ships/boss';
 import {Healthpack} from './misc/healthpack';
 import {Portal} from './misc/portal';
 import {Timer} from './lib/time/timer';
+import {Input} from './lib/input';
 
 var renderer, sceneManager;
+var pause = false;
+//var input = new Input()
 
 function start() {
   // Create Renderer
@@ -46,6 +50,7 @@ function createScene(level: number): Scene {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
   scene.add(new Background());
 
+
   // You may want to DRY out this code.
   var player = new Player(0, {
     x: Math.floor(Math.random() * scene.width),
@@ -55,29 +60,11 @@ function createScene(level: number): Scene {
 
   scene.add(new GUI());
 
-  // Add a Healthpack
-  //scene.add(new Healthpack({
-  //  x: Math.floor(Math.random() * scene.width),
-  //  y: Math.floor(Math.random() * scene.height)
-  //}));
-
-
   // Even levels are enemies, odd levels are bosses.
   //WW
 
   if (level % 2 == 0 && level < 4) {
-    /*
-    this.timer.addTimer('createPortalTimer',30);
 
-    if(this.timer.done('createPortalTimer'))
-    {
-      var boss = new Boss({
-        x: Math.floor(Math.random() * scene.width),
-        y: Math.floor(Math.random() * scene.height)
-      }, level)
-    scene.add(boss);
-    }
-    */
 
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
     {
@@ -135,7 +122,13 @@ function createVictory()
 function animate() {
   renderer.update(sceneManager.current());
   renderer.render(sceneManager.current());
-  requestAnimationFrame(animate);
+
+
+requestAnimationFrame(animate);
+
+
+
+
 }
 
 start();

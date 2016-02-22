@@ -1,7 +1,8 @@
 System.register(['./lib/engine', './menu/background', './menu/menu', './menu/victory', './menu/gui', './ships/player', './ships/enemy', './ships/boss'], function(exports_1) {
     "use strict";
     var engine_1, background_1, menu_1, victory_1, gui_1, player_1, enemy_1, boss_1;
-    var renderer, sceneManager;
+    var renderer, sceneManager, pause;
+    //var input = new Input()
     function start() {
         // Create Renderer
         renderer = new engine_1.Renderer();
@@ -31,26 +32,9 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/vic
         });
         scene.add(player);
         scene.add(new gui_1.GUI());
-        // Add a Healthpack
-        //scene.add(new Healthpack({
-        //  x: Math.floor(Math.random() * scene.width),
-        //  y: Math.floor(Math.random() * scene.height)
-        //}));
         // Even levels are enemies, odd levels are bosses.
         //WW
         if (level % 2 == 0 && level < 4) {
-            /*
-            this.timer.addTimer('createPortalTimer',30);
-        
-            if(this.timer.done('createPortalTimer'))
-            {
-              var boss = new Boss({
-                x: Math.floor(Math.random() * scene.width),
-                y: Math.floor(Math.random() * scene.height)
-              }, level)
-            scene.add(boss);
-            }
-            */
             for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++) {
                 var regEnemy = new enemy_1.Enemy(1, {
                     x: Math.floor(Math.random() * scene.width),
@@ -126,6 +110,7 @@ System.register(['./lib/engine', './menu/background', './menu/menu', './menu/vic
                 boss_1 = boss_1_1;
             }],
         execute: function() {
+            pause = false;
             start();
             animate();
         }
