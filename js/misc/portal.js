@@ -35,7 +35,6 @@ System.register(['../lib/engine'], function(exports_1) {
                     if (this.isColliding(player)) {
                         player.keepEnemySpawning = true;
                         player.spawnTimer = true;
-                        player.goThere = true;
                         scene.next();
                     }
                     // Spin slowly

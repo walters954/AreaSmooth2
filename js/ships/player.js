@@ -195,6 +195,7 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     }
                     if (this.timer.done('createPortalTimer')) {
                         this.createPortal(scene);
+                        this.keepEnemySpawning = true;
                     }
                 };
                 return Player;

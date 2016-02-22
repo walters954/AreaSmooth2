@@ -239,7 +239,7 @@ if (this.keepEnemySpawning && scene.current() > 4)
     if(this.timer.done('createPortalTimer'))
     {
       this.createPortal(scene);
-      
+      this.keepEnemySpawning = true;
     }
   }
 
