@@ -60,23 +60,31 @@ function createScene(level: number): Scene {
   //  y: Math.floor(Math.random() * scene.height)
   //}));
 
-  // Past level 5 you need to spawn mini healthpacks
-  scene.add(new Healthpack({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }, 5));
-
 
   // Even levels are enemies, odd levels are bosses.
   //WW
-  if (level % 2 == 0) {
+  if (level % 2 == 0 && level < 4) {
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
       scene.add(new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)
       }));
   }
-  else {
+  else if (level > 3 && level < 9)
+  {
+    for (var i = 0; i < level + 1; i++)
+    {
+      var enemyFreeze = new Enemy(1, {
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      });
+      enemyFreeze.moving = false;
+      enemyFreeze.shooting = false;
+      enemyFreeze.isFrozen = true;
+      scene.add(enemyFreeze);
+    }
+  }
+    else {
     scene.add(new Boss({
       x: Math.floor(Math.random() * scene.width),
       y: Math.floor(Math.random() * scene.height)

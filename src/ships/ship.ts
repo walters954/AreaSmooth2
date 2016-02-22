@@ -47,6 +47,7 @@ export class Ship extends GameObject {
     this.sprite.src = 'sprites/ship.png';
 
     this.timer.addTimer('shoot', this.gunReloadTime);
+
   }
 
   update(scene: Scene, input: Input, deltaTime: number) {
@@ -110,11 +111,9 @@ export class Ship extends GameObject {
   }
 
   render(context: CanvasRenderingContext2D) {
-
     context.save();
     context.translate(this.position.x, this.position.y);
     context.rotate(-this.rotation * (Math.PI / 180));
-
     context.drawImage(this.sprite, 64 * this.team, 0, 64, 64, -32, -32, 64, 64);
     context.restore();
   }

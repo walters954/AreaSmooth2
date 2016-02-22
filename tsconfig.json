@@ -51,6 +51,7 @@
     "./src/ships/boss.ts",
     "./src/ships/bullet.ts",
     "./src/ships/enemy.ts",
+    "./src/ships/enemyFrozen.ts",
     "./src/ships/player.ts",
     "./src/ships/ship.ts"
   ]

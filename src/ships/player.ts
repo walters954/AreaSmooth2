@@ -60,7 +60,7 @@ export class Player extends Ship {
 
 //ww so you can summon 3 ships every time you kill 3
     if ( this.killCount % 3 == 0 && this.summonEnemyAtThree &&
-      this.killCount != 150 && this.killCount != 0 )
+      this.killCount != 150 && this.killCount != 0  && scene.current() < 5)
     {
       for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
         scene.add(new Enemy(1, {
@@ -69,8 +69,6 @@ export class Player extends Ship {
         }));
         this.summonEnemyAtThree = false;
     };
-
-
 
     //ww Add a Portal
     if (this.killCount == 150 && this.spawnPortal)
@@ -86,16 +84,18 @@ export class Player extends Ship {
     // Check collisions with enemies
     scene.findObjectOfType('Enemy').map(
       (enemy: Enemy) => {
-        if (this.timer.done('collide') && this.isColliding(enemy)) {
+        if (this.timer.done('collide') && this.isColliding(enemy) && enemy.isFrozen == true) {
           this.hp -= 10;
           enemy.hp -= 5;
           this.timer.reset('collide');
-          //this.collided = 150;
+        }/*
+        else if (this.timer.done('collide') && this.isColliding(enemy) ){
+          this.hp -= 10;
+          enemy.hp -= 5;
+          this.timer.reset('collide');
         }
-        //else if(this.collided)
-        //{
-        //  this.collided--;
-        //}
+        */
+
       }
     );
 

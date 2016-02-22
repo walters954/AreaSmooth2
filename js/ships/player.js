@@ -66,7 +66,7 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     this.shooting = input.getKey(engine_1.KeyCode.Space);
                     //ww so you can summon 3 ships every time you kill 3
                     if (this.killCount % 3 == 0 && this.summonEnemyAtThree &&
-                        this.killCount != 150 && this.killCount != 0) {
+                        this.killCount != 150 && this.killCount != 0 && scene.current() < 5) {
                         for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
                             scene.add(new enemy_1.Enemy(1, {
                                 x: Math.floor(Math.random() * scene.width),
@@ -85,15 +85,17 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     }
                     // Check collisions with enemies
                     scene.findObjectOfType('Enemy').map(function (enemy) {
-                        if (_this.timer.done('collide') && _this.isColliding(enemy)) {
+                        if (_this.timer.done('collide') && _this.isColliding(enemy) && enemy.isFrozen == true) {
                             _this.hp -= 10;
                             enemy.hp -= 5;
                             _this.timer.reset('collide');
+                        } /*
+                        else if (this.timer.done('collide') && this.isColliding(enemy) ){
+                          this.hp -= 10;
+                          enemy.hp -= 5;
+                          this.timer.reset('collide');
                         }
-                        //else if(this.collided)
-                        //{
-                        //  this.collided--;
-                        //}
+                        */
                     });
                     // Spawns a healthpack every 5 minutes and destroys it
                     // Add a Healthpack
