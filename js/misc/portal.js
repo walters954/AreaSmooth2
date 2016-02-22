@@ -33,6 +33,9 @@ System.register(['../lib/engine'], function(exports_1) {
                     // Find a player in the scene.
                     var player = scene.findObjectOfType('Player')[0];
                     if (this.isColliding(player)) {
+                        player.keepEnemySpawning = true;
+                        player.spawnTimer = true;
+                        player.goThere = true;
                         scene.next();
                     }
                     // Spin slowly

@@ -16,6 +16,11 @@ export class Player extends Ship {
   public collisionGracePeriod = 2;
   public healthpackSpawnPeriod = 300;
   public healthpackDestroyPeriod = 30;
+  public freezeEnemyRespond = 60;
+  public spawnPortalTic = 30;
+  public goThere = true;
+
+
 
   public keepEnemySpawning = true;
 
@@ -41,6 +46,8 @@ export class Player extends Ship {
 
     // Starts timer for destroying healthpack
     this.timer.addTimer('destroyHealthPack', this.healthpackDestroyPeriod);
+
+
   }
 
 
@@ -64,14 +71,17 @@ export class Player extends Ship {
     if ( this.killCount % 3 == 0 && this.summonEnemyAtThree &&
       this.killCount != 150 && this.killCount != 0  && scene.current() < 5)
     {
-      for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
-      var regEnemy = new Enemy(1, {
-        x: Math.floor(Math.random() * scene.width),
-        y: Math.floor(Math.random() * scene.height)
-      }, scene.current())
-      regEnemy.rndColor = scene.randomColor
-      scene.add(regEnemy);
-        this.summonEnemyAtThree = false;
+      for (var i = 0; i < Math.floor((Math.random() * 4) + 3); i++)
+      {
+        var regEnemy = new Enemy(1, {
+          x: Math.floor(Math.random() * scene.width),
+          y: Math.floor(Math.random() * scene.height)
+        }, scene.current())
+        regEnemy.rndColor = scene.randomColor
+        scene.add(regEnemy);
+          this.summonEnemyAtThree = false;
+      }
+
     }
     var enemyCount = 0;
 
@@ -80,37 +90,66 @@ export class Player extends Ship {
    if(o.type == 'Enemy')
      enemyCount++;
  })
+if (this.keepEnemySpawning && scene.current() > 4)
+{
 
 
-    if (scene.current() > 4 && enemyCount < scene.current() && this.keepEnemySpawning)
+  if(scene.current()  == 5)
+  {
+    this.timer.addTimer('createPortalTimer', 10);
+    this.timer.addTimer('spawnPortalTimer', 20);
+    this.keepEnemySpawning = false;
+  }
+  else if(scene.current()  == 6)
+  {
+    this.timer.addTimer('createPortalTimer', 10);
+    this.timer.addTimer('spawnPortalTimer', 20);
+    this.keepEnemySpawning = false;
+  }
+  else if(scene.current()  == 7)
+  {
+    this.timer.addTimer('createPortalTimer', 10);
+    this.timer.addTimer('spawnPortalTimer', 20);
+    this.keepEnemySpawning = false;
+  }
+  else if(scene.current()  == 8)
+  {
+    this.timer.addTimer('createPortalTimer', 10);
+    this.timer.addTimer('spawnPortalTimer', 20);
+    this.keepEnemySpawning = false;
+  }
+  else if(scene.current()  == 9)
+  {
+    this.timer.addTimer('createPortalTimer', 10);
+    this.timer.addTimer('spawnPortalTimer', 20);
+    this.keepEnemySpawning = false;
+  }
+}
+
+
+    if (scene.current() > 4 && enemyCount < scene.current())
     {
-      //Create a time that turns off the keepEnemySpawning variable in the time that it is set in the L and then create a portal after wards
-      //stop the respawn after 60 or a set time in L
-      //spawn the portal after 30 or the set time in L
+      //fix protal next to keepEnemySpawning = true instead of the time
+
       if(scene.current()  == 5)
       {
-        this.summonFrozenEnemy(scene);
-        this.createPortal(scene);
+        this.checkTimeDone(scene)
       }
       else if(scene.current()  == 6)
       {
-        this.summonFrozenEnemy(scene);
-        this.createPortal(scene);
+        this.checkTimeDone(scene)
       }
       else if(scene.current()  == 7)
       {
-        this.summonFrozenEnemy(scene);
-        this.createPortal(scene);
+        this.checkTimeDone(scene)
       }
       else if(scene.current()  == 8)
       {
-        this.summonFrozenEnemy(scene);
-        this.createPortal(scene);
+        this.checkTimeDone(scene)
       }
       else if(scene.current()  == 9)
       {
-        this.summonFrozenEnemy(scene);
-        this.createPortal(scene);
+        this.checkTimeDone(scene)
       }
     }
 
@@ -188,5 +227,21 @@ export class Player extends Ship {
       y: Math.floor(Math.random() * scene.height)
     }));
   }
+
+  checkTimeDone(scene : Scene)
+  {
+    if(!this.timer.done('spawnPortalTimer') && this.goThere)
+    {
+      this.summonFrozenEnemy(scene);
+      this.goThere = false
+    }
+
+    if(this.timer.done('createPortalTimer'))
+    {
+      this.createPortal(scene);
+      
+    }
+  }
+
 
 }

@@ -40,6 +40,9 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     this.collisionGracePeriod = 2;
                     this.healthpackSpawnPeriod = 300;
                     this.healthpackDestroyPeriod = 30;
+                    this.freezeEnemyRespond = 60;
+                    this.spawnPortalTic = 30;
+                    this.goThere = true;
                     this.keepEnemySpawning = true;
                     this.shootSound.src = 'sounds/laser.wav';
                     this.gunDamage = 10; //ww default needs to be 1
@@ -68,43 +71,64 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     //ww so you can summon 3 ships every time you kill 3
                     if (this.killCount % 3 == 0 && this.summonEnemyAtThree &&
                         this.killCount != 150 && this.killCount != 0 && scene.current() < 5) {
-                        for (var i = 0; i < Math.floor((Math.random() * 4) + 2); i++)
+                        for (var i = 0; i < Math.floor((Math.random() * 4) + 3); i++) {
                             var regEnemy = new enemy_1.Enemy(1, {
                                 x: Math.floor(Math.random() * scene.width),
                                 y: Math.floor(Math.random() * scene.height)
                             }, scene.current());
-                        regEnemy.rndColor = scene.randomColor;
-                        scene.add(regEnemy);
-                        this.summonEnemyAtThree = false;
+                            regEnemy.rndColor = scene.randomColor;
+                            scene.add(regEnemy);
+                            this.summonEnemyAtThree = false;
+                        }
                     }
                     var enemyCount = 0;
                     scene.array.map(function (o) {
                         if (o.type == 'Enemy')
                             enemyCount++;
                     });
-                    if (scene.current() > 4 && enemyCount < scene.current() && this.keepEnemySpawning) {
-                        //Create a time that turns off the keepEnemySpawning variable in the time that it is set in the L and then create a portal after wards
-                        //stop the respawn after 60 or a set time in L
-                        //spawn the portal after 30 or the set time in L
+                    if (this.keepEnemySpawning && scene.current() > 4) {
                         if (scene.current() == 5) {
-                            this.summonFrozenEnemy(scene);
-                            this.createPortal(scene);
+                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 6) {
-                            this.summonFrozenEnemy(scene);
-                            this.createPortal(scene);
+                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 7) {
-                            this.summonFrozenEnemy(scene);
-                            this.createPortal(scene);
+                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 8) {
-                            this.summonFrozenEnemy(scene);
-                            this.createPortal(scene);
+                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.keepEnemySpawning = false;
                         }
                         else if (scene.current() == 9) {
-                            this.summonFrozenEnemy(scene);
-                            this.createPortal(scene);
+                            this.timer.addTimer('createPortalTimer', 10);
+                            this.timer.addTimer('spawnPortalTimer', 20);
+                            this.keepEnemySpawning = false;
+                        }
+                    }
+                    if (scene.current() > 4 && enemyCount < scene.current()) {
+                        //fix protal next to keepEnemySpawning = true instead of the time
+                        if (scene.current() == 5) {
+                            this.checkTimeDone(scene);
+                        }
+                        else if (scene.current() == 6) {
+                            this.checkTimeDone(scene);
+                        }
+                        else if (scene.current() == 7) {
+                            this.checkTimeDone(scene);
+                        }
+                        else if (scene.current() == 8) {
+                            this.checkTimeDone(scene);
+                        }
+                        else if (scene.current() == 9) {
+                            this.checkTimeDone(scene);
                         }
                     }
                     //ww Add a Portal
@@ -163,6 +187,15 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                         x: Math.floor(Math.random() * scene.width),
                         y: Math.floor(Math.random() * scene.height)
                     }));
+                };
+                Player.prototype.checkTimeDone = function (scene) {
+                    if (!this.timer.done('spawnPortalTimer') && this.goThere) {
+                        this.summonFrozenEnemy(scene);
+                        this.goThere = false;
+                    }
+                    if (this.timer.done('createPortalTimer')) {
+                        this.createPortal(scene);
+                    }
                 };
                 return Player;
             }(ship_1.Ship));

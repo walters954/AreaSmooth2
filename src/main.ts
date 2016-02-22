@@ -13,6 +13,7 @@ import {Enemy} from './ships/enemy';
 import {Boss} from './ships/boss';
 import {Healthpack} from './misc/healthpack';
 import {Portal} from './misc/portal';
+import {Timer} from './lib/time/timer';
 
 var renderer, sceneManager;
 
@@ -65,6 +66,19 @@ function createScene(level: number): Scene {
   //WW
 
   if (level % 2 == 0 && level < 4) {
+    /*
+    this.timer.addTimer('createPortalTimer',30);
+
+    if(this.timer.done('createPortalTimer'))
+    {
+      var boss = new Boss({
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      }, level)
+    scene.add(boss);
+    }
+    */
+
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
     {
       var regEnemy = new Enemy(1, {
