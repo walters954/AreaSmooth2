@@ -6,8 +6,8 @@ import {Bullet} from './bullet';
 
 export class Boss extends Enemy {
     public sprite = new Image();
-  constructor(public position: { x: number, y: number }) {
-    super(1, position);
+  constructor(public position: { x: number, y: number }, adder) {
+    super(1, position, adder);
     // Edit Stats
     this.spdMax = this.spdMax * 0.5; //He moves at half the spd as other ships.
     this.hpMax = this.hp = 1000; //ww deafult 1000

@@ -45,6 +45,8 @@ function createScene(level: number): Scene {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
   scene.add(new Background());
 
+  var adder = level;
+
   // You may want to DRY out this code.
   var player = new Player(0, {
     x: Math.floor(Math.random() * scene.width),
@@ -71,16 +73,21 @@ function createScene(level: number): Scene {
   //WW
   if (level % 2 == 0) {
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-      scene.add(new Enemy(1, {
+    {
+      var aNewEnemy = new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)
-      }));
+      }, adder);
+
+      scene.add(aNewEnemy);
+    }
+
   }
   else {
     scene.add(new Boss({
       x: Math.floor(Math.random() * scene.width),
       y: Math.floor(Math.random() * scene.height)
-    }));
+    }, adder));
   }
   return scene;
 }
