@@ -4,6 +4,7 @@ import {Renderer, SceneManager, Scene} from './lib/engine';
 // Game Specific Stuff
 import {Background} from './menu/background';
 import {Menu} from './menu/menu';
+import {Victory} from './menu/victory';
 import {GUI} from './menu/gui';
 
 
@@ -27,20 +28,16 @@ function start() {
 
   sceneManager.add(createMainMenu());
 
-  for (var i = 0; i < 20; i++)
-    sceneManager.add(createScene(i));
-
-  // Add your victory level here.
-}
-
-//ww
-function summonEnemy(scene)
-{
-  for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
-    scene.add(new Enemy(1, {
-      x: Math.floor(Math.random() * scene.width),
-      y: Math.floor(Math.random() * scene.height)
-    }));
+  for (var i = 0; i < 11; i++){
+    if (i == 10)
+    {
+      sceneManager.add(createVictory())
+    }
+    else
+    {
+      sceneManager.add(createScene(i));
+    }
+  }
 }
 
 // Edit this function to check which level you're in and make the game harder with it.
@@ -58,34 +55,36 @@ function createScene(level: number): Scene {
   scene.add(new GUI());
 
   // Add a Healthpack
-  scene.add(new Healthpack({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }));
+  //scene.add(new Healthpack({
+  //  x: Math.floor(Math.random() * scene.width),
+  //  y: Math.floor(Math.random() * scene.height)
+  //}));
 
-  // Past level 5 you need to spawn mini healthpacks
-  scene.add(new Healthpack({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }, 5));
-
-
-  // Add a Portal
-  scene.add(new Portal({
-    x: Math.floor(Math.random() * scene.width),
-    y: Math.floor(Math.random() * scene.height)
-  }));
 
   // Even levels are enemies, odd levels are bosses.
   //WW
-  if (level % 2 == 0) {
+  if (level % 2 == 0 && level < 4) {
     for (var i = 0; i < Math.floor((Math.random() * 7) + 3); i++)
       scene.add(new Enemy(1, {
         x: Math.floor(Math.random() * scene.width),
         y: Math.floor(Math.random() * scene.height)
       }));
   }
-  else {
+  else if (level > 3 && level < 9)
+  {
+    for (var i = 0; i < level + 1; i++)
+    {
+      var enemyFreeze = new Enemy(1, {
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      });
+      enemyFreeze.moving = false;
+      enemyFreeze.shooting = false;
+      enemyFreeze.isFrozen = true;
+      scene.add(enemyFreeze);
+    }
+  }
+    else {
     scene.add(new Boss({
       x: Math.floor(Math.random() * scene.width),
       y: Math.floor(Math.random() * scene.height)
@@ -98,6 +97,14 @@ function createMainMenu() {
   var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
     scene.add(new Background());
     scene.add(new Menu());
+  return scene;
+}
+
+function createVictory()
+{
+  var scene = new Scene({ position: { x: 64, y: 64 }, width: 640, height: 360 }, 800, 800);
+    scene.add(new Background());
+    scene.add(new Victory());
   return scene;
 }
 

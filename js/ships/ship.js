@@ -49,6 +49,9 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                     this.lives = 1;
                     this.isDestoryed = false;
                     this.killCount = 0;
+                    this.spawnPortal = true;
+                    this.isBoss = false;
+                    this.time = 0;
                     this.team = team;
                     //Transform
                     this.position = position;
@@ -66,6 +69,12 @@ System.register(['../lib/engine', './bullet', '../lib/time/timer'], function(exp
                             this.timer.reset('shoot');
                             var bullet = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation * (Math.PI / 180)), -Math.sin(this.rotation * (Math.PI / 180)), this.gunDamage);
                             scene.add(bullet);
+                            if (this.isBoss) {
+                                var bullet1 = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10 * (Math.PI / 180)), this.gunDamage);
+                                scene.add(bullet1);
+                                var bullet2 = new bullet_1.Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
+                                scene.add(bullet2);
+                            }
                         }
                     }
                     if (this.moving) {

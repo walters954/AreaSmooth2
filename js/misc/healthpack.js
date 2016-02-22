@@ -17,7 +17,7 @@ System.register(['../lib/engine'], function(exports_1) {
                 __extends(Healthpack, _super);
                 function Healthpack(position, heal) {
                     if (position === void 0) { position = { x: 0, y: 0 }; }
-                    if (heal === void 0) { heal = 25; }
+                    if (heal === void 0) { heal = 50; }
                     _super.call(this);
                     this.heal = heal;
                     this.type = 'Healthpack';

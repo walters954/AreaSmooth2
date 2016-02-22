@@ -1,4 +1,5 @@
 import {GameObject, Scene} from '../lib/engine';
+import {SceneManager} from '../lib/core/scenemanager';
 
 export class GUI extends GameObject {
   public myString;
@@ -12,8 +13,12 @@ export class GUI extends GameObject {
     this.viewport = scene.viewport;
     this.player = scene.findObjectOfType('Player')[0];
     if (this.player)
-      this.myString = "HP: " + this.player.hp + " Kill Count: "
-      + this.player.killCount + " Score: " + this.player.killScore;
+      this.myString = "HP: " + this.player.hp +
+      " Kill Count: " + this.player.killCount +
+       " Score: " + this.player.killScore +
+        " Lives: " + this.player.lives +
+        " Level: " + scene.current()
+      ;
 
 
 

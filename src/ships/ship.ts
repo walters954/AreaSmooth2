@@ -32,6 +32,9 @@ export class Ship extends GameObject {
   public lives = 1;
   public isDestoryed = false;
   public killCount = 0;
+  public spawnPortal = true;
+  public isBoss = false;
+  public time = 0;
 
   constructor(public team = 0, position: { x: number, y: number }) {
     super();
@@ -44,6 +47,7 @@ export class Ship extends GameObject {
     this.sprite.src = 'sprites/ship.png';
 
     this.timer.addTimer('shoot', this.gunReloadTime);
+
   }
 
   update(scene: Scene, input: Input, deltaTime: number) {
@@ -51,13 +55,22 @@ export class Ship extends GameObject {
     this.timer.update(deltaTime);
 
     //Ship Controls
+
     if (this.shooting) {
       if (this.timer.done('shoot')) {
         this.timer.reset('shoot');
         var bullet = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation * (Math.PI / 180)), -Math.sin(this.rotation * (Math.PI / 180)), this.gunDamage);
         scene.add(bullet);
+        if (this.isBoss)
+        {
+          var bullet1 = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation - 10 * (Math.PI / 180)), -Math.sin(this.rotation - 10  * (Math.PI / 180)) , this.gunDamage);
+          scene.add(bullet1);
+          var bullet2 = new Bullet(this.team, this.position.x, this.position.y, Math.cos(this.rotation + 10 * (Math.PI / 180)), -Math.sin(this.rotation + 10 * (Math.PI / 180)), this.gunDamage);
+          scene.add(bullet2);
+        }
       }
     }
+
 
     if (this.moving) {
       this.spd = MathEx.clamp(this.spd + (deltaTime * this.acc), 0, this.spdMax);

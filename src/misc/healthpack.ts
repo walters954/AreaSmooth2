@@ -4,7 +4,7 @@ export class Healthpack extends GameObject {
   public type = 'Healthpack';
   public sprite = new Image();
   private timer = new Timer();
-  constructor(position = { x: 0, y: 0 }, public heal = 25) {
+  constructor(position = { x: 0, y: 0 }, public heal = 50) {
     super();
     this.position = position;
     this.sprite.src = './sprites/healthball.png';

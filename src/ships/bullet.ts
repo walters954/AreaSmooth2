@@ -53,6 +53,10 @@ export class Bullet extends GameObject {
                 if (o.team == 1)
                 {
                   player.killScore +=10;
+                  if (player.killCount % 3 != 0)
+                  {
+                    player.summonEnemyAtThree = true;
+                  }
                 }
               }
             );

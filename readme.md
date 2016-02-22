@@ -1,3 +1,6 @@
+All credit to Alain Galvan for the skeleton for the game.
+https://github.com/alaingalvan
+http://codepen.io/alaingalvan/
 ![Screenshot](sprites/screenshot.gif)
 
 # Canvas Bullet Hell Example
@@ -260,7 +263,7 @@ else {
 }
 ```
 
-Between each level there's a boss fight. 
+Between each level there's a boss fight.
 
 ## Design decisions
 
