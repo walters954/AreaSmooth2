@@ -17,6 +17,8 @@ export class Player extends Ship {
   public healthpackSpawnPeriod = 300;
   public healthpackDestroyPeriod = 30;
 
+  public keepEnemySpawning = true;
+
   // Healthpack to be used by player
   public healthpack;
 
@@ -68,7 +70,48 @@ export class Player extends Ship {
           y: Math.floor(Math.random() * scene.height)
         }));
         this.summonEnemyAtThree = false;
-    };
+    }
+    var enemyCount = 0;
+
+ scene.array.map((o) =>
+ {
+   if(o.type == 'Enemy')
+     enemyCount++;
+ })
+
+
+    if (scene.current() > 4 && enemyCount < scene.current() && this.keepEnemySpawning)
+    {
+      //Create a time that turns off the keepEnemySpawning variable in the time that it is set in the L and then create a portal after wards
+      //stop the respawn after 60 or a set time in L
+      //spawn the portal after 30 or the set time in L
+      if(scene.current()  == 5)
+      {
+        this.summonFrozenEnemy(scene);
+        this.createPortal(scene);
+      }
+      else if(scene.current()  == 6)
+      {
+        this.summonFrozenEnemy(scene);
+        this.createPortal(scene);
+      }
+      else if(scene.current()  == 7)
+      {
+        this.summonFrozenEnemy(scene);
+        this.createPortal(scene);
+      }
+      else if(scene.current()  == 8)
+      {
+        this.summonFrozenEnemy(scene);
+        this.createPortal(scene);
+      }
+      else if(scene.current()  == 9)
+      {
+        this.summonFrozenEnemy(scene);
+        this.createPortal(scene);
+      }
+
+    }
 
     //ww Add a Portal
     if (this.killCount == 150 && this.spawnPortal)
@@ -124,4 +167,24 @@ export class Player extends Ship {
     scene.viewport.position.x = this.position.x - (scene.viewport.width / 2);
     scene.viewport.position.y = this.position.y - (scene.viewport.height / 2);
   }
+
+  summonFrozenEnemy(scene : Scene)
+  {
+      var enemyFreeze = new Enemy(1, {
+        x: Math.floor(Math.random() * scene.width),
+        y: Math.floor(Math.random() * scene.height)
+      });
+      enemyFreeze.moving = false;
+      enemyFreeze.shooting = false;
+      enemyFreeze.isFrozen = true;
+      scene.add(enemyFreeze);
+    }
+  createPortal(scene : Scene)
+  {
+    scene.add(new Portal({
+      x: Math.floor(Math.random() * scene.width),
+      y: Math.floor(Math.random() * scene.height)
+    }));
+  }
+
 }
