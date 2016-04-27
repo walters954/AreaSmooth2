@@ -1,6 +1,6 @@
-System.register(['../input', '../time/clock'], function(exports_1) {
+System.register(['../input', '../time/clock', '../input/keyboard'], function(exports_1) {
     "use strict";
-    var input_1, clock_1;
+    var input_1, clock_1, keyboard_1;
     var Renderer;
     return {
         setters:[
@@ -9,6 +9,9 @@ System.register(['../input', '../time/clock'], function(exports_1) {
             },
             function (clock_1_1) {
                 clock_1 = clock_1_1;
+            },
+            function (keyboard_1_1) {
+                keyboard_1 = keyboard_1_1;
             }],
         execute: function() {
             /**
@@ -17,6 +20,7 @@ System.register(['../input', '../time/clock'], function(exports_1) {
             Renderer = (function () {
                 // Initzalize Renderer
                 function Renderer() {
+                    this.paused = false;
                     this.canvas = document.createElement('canvas');
                     this.canvas.tabIndex = 1;
                     this.canvas.width = 800;
@@ -30,11 +34,19 @@ System.register(['../input', '../time/clock'], function(exports_1) {
                 Renderer.prototype.update = function (scene) {
                     var _this = this;
                     var deltaTime = this.clock.deltaTime();
-                    scene.array.map(function (o) {
-                        if ('update' in o)
-                            if (scene)
-                                o.update(scene, _this.input, deltaTime);
-                    });
+                    if (this.input.getKeyPressed(keyboard_1.KeyCode.KeyP)) {
+                        this.paused = !this.paused;
+                    }
+                    //this.input = new Input(this.canvas);
+                    if (!this.paused) {
+                        //this.paused = false;
+                        scene.array.map(function (o) {
+                            _this.paused = false;
+                            if ('update' in o)
+                                if (scene)
+                                    o.update(scene, _this.input, deltaTime);
+                        });
+                    }
                 };
                 //Refreshes the screen with everything in the scene.
                 Renderer.prototype.render = function (scene) {
