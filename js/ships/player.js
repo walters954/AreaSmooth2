@@ -48,7 +48,7 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                     this.gunDamage = 1; //ww default needs to be 1
                     this.lives = 3;
                     this.gunReloadTime = 1;
-                    this.killCount = 150; //ww for testing
+                    //this.killCount = 150; //ww for testing
                     // Starts collision timer at 0 for initial hit once ship is created
                     this.timer.addTimer('collide', this.collisionGracePeriod);
                     // Starts timer for healthpack for 5 minutes
@@ -193,7 +193,7 @@ System.register(['../lib/engine', './ship', './enemy', '../misc/portal', "../mis
                         this.summonFrozenEnemy(scene);
                         this.goThere = false;
                     }
-                    if (this.timer.done('createPortalTimer') && !this.keepEnemySpawning) {
+                    if (this.timer.done('createPortalTimer')) {
                         this.createPortal(scene);
                         this.keepEnemySpawning = true;
                     }
