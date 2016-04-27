@@ -34,7 +34,7 @@ export class Player extends Ship {
     this.gunDamage = 1; //ww default needs to be 1
     this.lives = 3
     this.gunReloadTime = 1;
-    this.killCount = 150; //ww for testing
+    //this.killCount = 150; //ww for testing
 
 
 
@@ -61,7 +61,6 @@ export class Player extends Ship {
     var r = input.getKey(KeyCode.ArrowRight);
     var u = input.getKey(KeyCode.ArrowUp);
     var d = input.getKey(KeyCode.ArrowDown);
-    
 
 
     this.nextRotation = MathEx.keyboardAngle(u, l, d, r);
@@ -238,7 +237,7 @@ if (this.keepEnemySpawning && scene.current() > 4)
       this.goThere = false
     }
 
-    if(this.timer.done('createPortalTimer') && !this.keepEnemySpawning)
+    if(this.timer.done('createPortalTimer'))
     {
       this.createPortal(scene);
       this.keepEnemySpawning = true;

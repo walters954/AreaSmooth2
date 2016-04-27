@@ -42,12 +42,6 @@ System.register(['./input/keyboard', './input/mouse', './input/touch'], function
                 Input.prototype.touches = function () {
                     return this.touch.touches;
                 };
-                Input.prototype.getKeyPressed = function (key) {
-                    return this.keyboard.getKeyPressed(key);
-                };
-                Input.prototype.getKeyReleased = function (key) {
-                    return this.keyboard.getKeyReleased(key);
-                };
                 return Input;
             }());
             exports_1("Input", Input);
